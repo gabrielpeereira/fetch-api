@@ -4,14 +4,14 @@ const listarClientes = () => {
             return response.json()
         })
         .then(json => {
-            return json;
+            return json
         })
 }
 
 const cadastrarClientes = (nome, cpf) => {
     const Json = JSON.stringify({
        nome: nome,
-       cpf: nome  
+       cpf: cpf  
     })
     return fetch('http://localhost:4000/clientes/cliente', {
         method: 'POST',
