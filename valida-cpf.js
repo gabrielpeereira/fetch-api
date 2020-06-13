@@ -1,4 +1,6 @@
-function verificaCpf(cpf){
+//validação de cpf
+
+function verificaCpfInvalidos(cpf){
     const cpfInvalidos = [
         "11111111111",
         "12222222222",
@@ -23,3 +25,45 @@ function somaNumerosCPF(cpf, totalDeDigitos, peso) {
 
     return soma;
 }
+
+function verificaDigito(cpf, totalDeDigitos, peso, digitoDeVerificacao){
+        const soma = somaNumerosCPF(cpf, totalDeDigitos, peso);
+        const resto = (soma * 10) % 11
+
+        return resto === digitoDeVerificacao;
+    }
+
+    function verificaPrimeiroDigito(cpf){
+        const peso = 11;
+        const totalDeDigitosPrimeiraParte = 9;
+        const digitoDeVerificao =  parseInt(cpf.substring(9, 10));
+
+        return verificaDigito(
+            cpf,
+            totalDeDigitosPrimeiraParte,
+            peso,
+            digitoDeVerificao
+        )
+    }
+
+   function verificaSegundoDigito(cpf){
+        const peso = 12;
+        const totalDeDigitosSegundaParte = 10;
+        const digitosDeVerificao = parseInt(cpf.substring(10, 11))
+
+        return verificaDigito(
+            cpf,
+            totalDeDigitosSegundaParte,
+            peso,
+            digitosDeVerificao
+        )
+   }
+
+   function validaCPF(cpf){
+       return(
+        verificaPrimeiroDigito(cpf) &&
+        verificaSegundoDigito(cpf) &&
+        verificaCpfInvalidos(cpf)
+       )
+   }
+

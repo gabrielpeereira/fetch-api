@@ -1,13 +1,15 @@
 const formCadastroCliente = document.querySelector('[data-form]');
 
-console.log(formCadastroCliente);
-
 formCadastroCliente.addEventListener("submit", event => {
     event.preventDefault();
 
-    const nome = event.target.querySelector('[data-nome]');
-    const cpf = event.target.querySelector('[data-cpf]');
+    const nome = event.target.querySelector('[data-nome]').value;
+    const cpf = event.target.querySelector('[data-cpf]').value;
     
-
-    cadastrarClientes(nome.value, cpf.value)
+if(validaCPF(cpf)){
+    cadastrarClientes(nome, cpf)
+} else {
+    alert('O CPF não é valido')
+}
+    
 })
